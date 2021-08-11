@@ -1,3 +1,5 @@
+import { SharedModule } from './shared/shared.module';
+import { ProductModule } from './products/product.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
@@ -6,26 +8,22 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { ProductListComponent } from './products/product-list.component';
-import { StarComponent } from './shared/components/starComponent/starComponent.component';
-import { ConvertToSpacesPipe } from './shared/pipes/convert-to-pipes';
-import { ProductDetailComponent } from './products/product-detail/product-detail.component';
 import { WelcomeComponent } from './home/welcome.component';
 import { PageNotFoundComponent } from './404/page-not-found.component';
 import { ProductDetailGuard } from './guards/product-detail.guard';
+import { ProductDetailComponent } from './products/product-detail/product-detail.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductListComponent,
-    ConvertToSpacesPipe,
-    StarComponent,
-    ProductDetailComponent,
     WelcomeComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
+    ProductModule,
+    SharedModule,
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot([
