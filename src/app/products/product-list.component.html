@@ -1,0 +1,63 @@
+<div class="card">
+  <div class="card-header">
+    {{pageTitle}}
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-2">Filter by:</div>
+      <div class="col-md-4">
+        <!--uso de two way binding .... quando digitamos no campo ele detecta manda pro componente, que retorna para a tela modificando
+        o evento ocorre em duas vias-->
+        <input type="text" [(ngModel)]='listFilter' />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <h4>Filtered by: {{listFilter}}</h4>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <!--ngif diretiva estrutural para caso tenha alguma lista ele mostre na tabela-->
+      <table class="table" *ngIf='products.length'>
+        <thead>
+          <tr>
+            <th>
+              <!--usamos o click para definir um comportamento para o botão caso seja apertado ele mostra imagem se não não-->
+              <button class="btn btn-primary" (click)='toggleImage()'> {{showImage ? 'Hide' : 'Show'}} Image</button>
+            </th>
+            <th>Product</th>
+            <th>Code</th>
+            <th>Available</th>
+            <th>Price</th>
+            <th>5 Star Rating</th>
+
+          </tr>
+
+        </thead>
+        <tbody>
+          <!--diretiva de estrutura para mostrar o conteudo baseado numa lista
+          usado para listas dinâmicas-->
+          <tr *ngFor='let product of filteredProducts'>
+            <td>
+              <!--diretiva de estrutura para mostrar na tela elementos com base em uma condição
+                  aqui o ng if verifica se tiver imagem ele mostra na tela se não tiver não mostra-->
+              <img *ngIf='showImage' [src]='product.imageUrl' [title]='product.productName | uppercase'
+                [style.width.px]='imageWidth' [style.margin.px]='imageMargin' alt="">
+            </td>
+            <td>
+              <a [routerLink]="['/products', product.productId]">{{product.productName}}</a>
+            </td>
+            <!--pipes para formatações de dados , o angular já possui uns pré construidos mas podemos customizar
+                os nossos-->
+            <td>{{ product.productCode | lowercase | convertToSpaces:'-' }}</td>
+            <td>{{ product.releaseDate }}</td>
+            <td>{{ product.price | currency: 'R$ ':'symbol':'1.2-2' }}</td>
+            <td>
+              <pm-star [rating]='product.starRating' (ratingClicked)='onRatingClicked($event)'></pm-star>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
