@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { ProductListComponent } from './products/product-list.component';
 import { StarComponent } from './shared/components/starComponent/starComponent.component';
-import { ConvertToSpacesPipe } from './pipes/convert-to-pipes';
+import { ConvertToSpacesPipe } from './shared/pipes/convert-to-pipes';
 import { ProductDetailComponent } from './products/product-detail/product-detail.component';
 import { WelcomeComponent } from './home/welcome.component';
 import { PageNotFoundComponent } from './404/page-not-found.component';
