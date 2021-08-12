@@ -1,4 +1,4 @@
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { ProductService } from './../services/product.service';
 import { Component, OnDestroy, OnInit } from "@angular/core"
 import { IProduct } from "../models/product";
@@ -17,7 +17,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
    */
   constructor(private productService: ProductService) { }
 
-  pageTitle: string = "Product List"
+  pageTitle: string = "Product List";
   imageWidth: number = 50;
   imageMargin: number = 2;
   showImage: boolean = false;
