@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+
 export class ProductDetailGuard implements CanActivate {
 
   constructor(private router: Router) {}
@@ -19,5 +20,4 @@ export class ProductDetailGuard implements CanActivate {
     }
     return true;
   }
-
 }
