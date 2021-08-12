@@ -1,3 +1,5 @@
+import { ProductService } from './../../services/product.service';
+import { Subscription } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IProduct } from '../../models/product';
@@ -10,13 +12,14 @@ export class ProductDetailComponent implements OnInit {
 
   pageTitle: string = 'Product Detail'
   product: IProduct | undefined;
+  sub!: Subscription;
   /**
    * para ativar as rotas e identificar o produto , injetamos no construtor a ativação da rota
    * para obter os metodos referentes a ela
    * usamos tambem o serviço router para fornecer rotas via código
    * @param route 
    */
-  constructor(private route: ActivatedRoute, private router: Router) { }
+  constructor(private route: ActivatedRoute, private router: Router, private productService: ProductService) { }
  
 
   /**

@@ -4,29 +4,29 @@ import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { StarComponent } from './../shared/components/starComponent/starComponent.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { ProductListComponent } from './product-list.component';
-import { ConvertToSpacesPipe } from '../shared/pipes/convert-to-pipes';
-
-
+import { ProductDetailGuard } from '../guards/product-detail.guard';
 
 @NgModule({
   declarations: [
     ProductListComponent,
-    ProductDetailComponent,
+    ProductDetailComponent
   ],
   imports: [
-    CommonModule,
-    FormsModule,
-    RouterModule,
+    RouterModule.forChild([
+      { path: 'products', component: ProductListComponent },
+      { 
+        path: 'products/:id',
+        component: ProductDetailComponent,
+        canActivate: [ ProductDetailGuard ] 
+      }
+    ]),
     SharedModule
   ],
   exports:[
     ProductListComponent,
     ProductDetailComponent,
-    ConvertToSpacesPipe,
-    StarComponent
   ]
 })
 export class ProductModule { }
